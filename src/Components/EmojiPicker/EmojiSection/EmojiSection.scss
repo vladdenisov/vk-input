@@ -1,0 +1,17 @@
+.picker-section {
+  ul {
+    width: calc(100% - 8px);
+    position: relative;
+    height: max-content;
+    overflow: hidden;
+    padding: 0;
+    margin: auto;
+    li {
+      display: inline-block;
+      width: 26px;
+      float: left;
+      height: 26px;
+      cursor: pointer;
+    }
+  }
+}

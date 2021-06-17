@@ -1,0 +1,38 @@
+.message-input {
+    border: 1px solid #C5D0DB;
+    border-radius: 4px;
+    width: 290px;
+    min-height: 36px;
+    display: flex;
+    position: relative;
+    &--text {
+        margin: auto 0;
+        padding: 2px 5px;
+        width: 90%;
+        text-align: start;
+        &:focus {
+            outline: none;
+        }
+    }
+    &--emojiToggle {
+        height: 36px;
+        width: 10%;
+        display: flex;
+        &---button {
+            cursor: pointer;
+            margin: auto;
+            display: block;
+        }
+    }
+    .picker {
+        position: absolute;
+        top: -290px;
+    }
+}
+
+[contenteditable=true]:empty:before{
+    content: attr(placeholder);
+    pointer-events: none;
+    display: block;
+    color: #939393;
+}
