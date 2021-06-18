@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './EmojiPicker.scss';
 import PickerFooter from "./Footer/Footer";
 import GeneralTab from "./Tabs/General";
