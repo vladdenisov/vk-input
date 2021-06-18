@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import './MessageInput.scss';
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
 
@@ -9,9 +9,28 @@ function MessageInput() {
         const target = event.target as HTMLDivElement;
         console.log(target.innerText)
     }
-    const togglePicker = () => {
+    const togglePicker = useCallback(() => {
         setShowPicker(!showPicker)
-    }
+    }, [showPicker])
+    useEffect(() => {
+        const handleKeybinds = () => {
+            if (input.current) {
+                input.current.addEventListener('keydown', (event) => {
+                    if (event.code === 'Enter' && !event.shiftKey && input.current) {
+                        console.log(event.shiftKey)
+                        event.preventDefault()
+                        input.current.innerText = ''
+                    }
+                    if (event.code === 'Tab' && event.shiftKey) {
+                        event.preventDefault()
+                        togglePicker()
+                    }
+                })
+            }
+        }
+        handleKeybinds()
+        return handleKeybinds
+    }, [togglePicker])
     return (
         <div className={'message-input'}>
             {

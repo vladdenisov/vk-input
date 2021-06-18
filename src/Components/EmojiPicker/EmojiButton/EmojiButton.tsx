@@ -5,9 +5,9 @@ function EmojiButton (props: {
     onClick: () => void
 }) {
     return (
-        <div className="picker-button" onClick={props.onClick}>
+        <button className="picker-button" aria-label={props.emoji} onClick={props.onClick}>
             <span>{props.emoji}</span>
-        </div>
+        </button>
     );
 }
 
