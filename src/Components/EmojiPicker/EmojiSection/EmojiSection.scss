@@ -1,15 +1,26 @@
 .picker-section {
-  ul {
-    width: calc(100% - 8px);
+  &--header {
+    display: flex;
+    padding: 5px 11px;
+    &---text {
+      margin-left: 0;
+      font-size: 13px;
+      color: #939393;
+    }
+  }
+  &--list {
+    width: max-content;
+    max-width: calc(100% - 14px);
     position: relative;
     height: max-content;
     overflow: hidden;
     padding: 0;
     margin: auto;
-    li {
+    &---item {
       display: inline-block;
       width: 26px;
       float: left;
+      text-align: center;
       height: 26px;
       cursor: pointer;
     }

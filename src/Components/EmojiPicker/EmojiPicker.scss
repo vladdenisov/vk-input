@@ -5,5 +5,9 @@
   border: 1px solid #C5D0DB;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  overflow-y: auto;
+  &-sectionList {
+    overflow-y: auto;
+    height: 245px;
+  }
+
 }

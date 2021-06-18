@@ -5,8 +5,16 @@ function EmojiButton (props: {
     onClick: () => void
 }) {
     return (
-        <button className="picker-button" aria-label={props.emoji} onClick={props.onClick}>
-            <span>{props.emoji}</span>
+        <button
+            className="picker-button"
+            // For better accessibility
+            aria-label={props.emoji}
+            // Handle emoji click
+            onClick={props.onClick}
+        >
+            <span className={'picker-button--emoji'}>
+                {props.emoji}
+            </span>
         </button>
     );
 }

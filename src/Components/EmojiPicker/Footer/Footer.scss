@@ -1,0 +1,23 @@
+.picker-footer {
+  height: 36px;
+  background: #EBEEF2;
+  ul {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+  }
+  li {
+    display: inline;
+    float: left;
+    height: 100%;
+    &.active {
+      background: white;
+    }
+  }
+  button {
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    background: none;
+  }
+}

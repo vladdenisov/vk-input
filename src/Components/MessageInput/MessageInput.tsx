@@ -9,6 +9,7 @@ function MessageInput() {
         const target = event.target as HTMLDivElement;
         console.log(target.innerText)
     }
+    // Open and close picker
     const togglePicker = useCallback(() => {
         setShowPicker(!showPicker)
     }, [showPicker])
@@ -16,11 +17,12 @@ function MessageInput() {
         const handleKeybinds = () => {
             if (input.current) {
                 input.current.addEventListener('keydown', (event) => {
+                    // Imitate message sending on Enter press (Shift + Enter will create new line)
                     if (event.code === 'Enter' && !event.shiftKey && input.current) {
-                        console.log(event.shiftKey)
                         event.preventDefault()
                         input.current.innerText = ''
                     }
+                    // Open and close emoji picker on Shift + Enter
                     if (event.code === 'Tab' && event.shiftKey) {
                         event.preventDefault()
                         togglePicker()
@@ -31,15 +33,38 @@ function MessageInput() {
         handleKeybinds()
         return handleKeybinds
     }, [togglePicker])
+    const onSelect = (emoji: string) => {
+        if (input.current) {
+            input.current.innerText += emoji
+        }
+        // Add emoji to last used emoji list
+        const last_used = localStorage.getItem('last_used_emoji')
+        // Check if already some emojis are used
+        if (last_used) {
+            // Parse JSON
+            const emoji_list: string[] = JSON.parse(last_used)
+
+            // Add new emoji to list and remove it from last used list if it was used before
+            const new_list: string[] = [emoji, ...emoji_list.filter((e) => e !== emoji)]
+
+            // Store only 25 last emojis
+            if (emoji_list.length === 25) {
+                localStorage.setItem('last_used_emoji', JSON.stringify(new_list.slice(0, 25)))
+            }
+            else {
+                localStorage.setItem('last_used_emoji', JSON.stringify(new_list))
+            }
+        }
+        // If there's not last used list, create it
+        else {
+            localStorage.setItem('last_used_emoji', JSON.stringify([emoji]))
+        }
+    }
     return (
         <div className={'message-input'}>
             {
                 showPicker ?
-                    <EmojiPicker onSelect={emoji => {
-                        if (input.current) {
-                            input.current.innerText += emoji
-                        }
-                    }} /> :
+                    <EmojiPicker onSelect={onSelect} /> :
                     null
             }
             <div
