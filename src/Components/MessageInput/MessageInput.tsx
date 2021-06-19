@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './MessageInput.scss';
 import EmojiPicker from "../EmojiPicker/EmojiPicker";
 import {getTextSegments, restoreSelection} from "../../Utils/Caret";
