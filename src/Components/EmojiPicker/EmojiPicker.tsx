@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './EmojiPicker.scss';
 import PickerFooter from "./Footer/Footer";
 import GeneralTab from "./Tabs/General";
@@ -6,8 +6,19 @@ import LastUsed from "./Tabs/LastUsed";
 function Form (props: {
     // Used to handle emoji click
     onSelect: (emoji: string) => void
+    close: () => void
 }) {
     const [tab, setTab] = useState<number>(0)
+    const picker = useRef<HTMLDivElement>(null)
+    useEffect(() => {
+        if (picker.current) {
+            picker.current?.classList.remove('closed')
+        }
+    }, [])
+    const closePicker = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        picker.current?.classList.add('closed')
+        setTimeout(() => props.close(), 500)
+    }
     const tabs = [
         {
             icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,14 +39,8 @@ function Form (props: {
             title: 'Недавно использованные эмодзи'
         }
         ]
-    const picker = useRef<HTMLDivElement>(null)
-    // useEffect(() => {
-    //     if (picker.current) {
-    //         picker.current.focus()
-    //     }
-    // }, [])
     return (
-        <div className={'picker'} ref={picker}>
+        <div className={'picker closed'} ref={picker} onMouseLeave={closePicker}>
             <div className={'picker-sectionList'}>
                 {tabs[tab].render}
             </div>

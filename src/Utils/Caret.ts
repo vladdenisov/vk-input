@@ -11,7 +11,11 @@ const getTextSegments = (element: HTMLDivElement | ChildNode | Node) => {
                 break;
 
             case Node.ELEMENT_NODE:
-                textSegments.splice(textSegments.length, 0, ...(getTextSegments(node)));
+                if (node.nodeName === 'BR') {
+                    textSegments.splice(textSegments.length, 0, {text: '\n', node});
+                }
+                else
+                    textSegments.splice(textSegments.length, 0, ...(getTextSegments(node)));
                 break;
 
             default:
@@ -45,8 +49,31 @@ function restoreSelection(absoluteAnchorIndex: number, absoluteFocusIndex: numbe
         }
     });
     if (sel) {
-        sel.setBaseAndExtent(anchorNode,anchorIndex,focusNode,focusIndex);
+        if (anchorNode.nodeName === 'BR')
+            sel.setBaseAndExtent(anchorNode,0,focusNode,0);
+        else
+            sel.setBaseAndExtent(anchorNode,anchorIndex,focusNode,focusIndex);
+    }
+}
+function insertTextAtCursor(text: string) {
+    const sel = window.getSelection();
+    if (sel) {
+        let range = sel.getRangeAt(0);
+        range.deleteContents();
+        if (text === '\n') {
+            const node = document.createElement("br");
+            range.insertNode(node);
+        }
+        else {
+            const node = document.createTextNode(text);
+            range.insertNode(node);
+        }
+        const node = document.createTextNode(text);
+        range.insertNode(node);
+        range.collapse(false);
+        sel.removeAllRanges();
+        sel.addRange(range);
     }
 }
 
-export {restoreSelection, getTextSegments}
+export {restoreSelection, getTextSegments, insertTextAtCursor}
