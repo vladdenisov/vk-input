@@ -45,9 +45,10 @@ function MessageInput() {
     if (target.innerHTML === '<br>') {
       target.innerHTML = ''
     }
-    // @ts-ignore (Didn't find a type, where inputType is available
     if (
+      // @ts-ignore (Didn't find a type, where inputType is available)
       event.nativeEvent.inputType !== 'insertLineBreak' &&
+      // @ts-ignore
       event.nativeEvent.inputType !== 'deleteContentBackward'
     )
       updateEditor()
