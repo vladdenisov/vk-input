@@ -9,6 +9,8 @@
         margin: auto 0;
         padding: 2px 5px;
         width: 90%;
+        max-height: 300px;
+        overflow-y: auto;
         text-align: start;
         &:focus {
             outline: none;

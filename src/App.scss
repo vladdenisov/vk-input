@@ -5,4 +5,9 @@ $blue: #2A5885;
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+.chat {
+  height: 50%;
+  width: 100%;
 }

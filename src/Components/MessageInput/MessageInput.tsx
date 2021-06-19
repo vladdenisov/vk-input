@@ -65,9 +65,9 @@ function MessageInput() {
                 togglePicker()
             }
         }
-        input.current?.addEventListener('keydown', listener)
-        return input.current?.removeEventListener('keydown', listener)
-    }, [togglePicker])
+        input.current?.addEventListener('keydown', (e) => listener(e))
+        return input.current?.removeEventListener('keydown', (e) => listener(e))
+    }, [])
 
     const onSelect = (emoji: string) => {
         if (input.current) {
