@@ -45,9 +45,9 @@ function MessageInput() {
         updateEditor()
     }
     // Open and close picker
-    const togglePicker = useCallback(() => {
+    const togglePicker = () => {
         setShowPicker(!showPicker)
-    }, [showPicker])
+    }
     useEffect(() => {
         const listener = (event: KeyboardEvent) => {
             console.log(event.code, event.shiftKey)
@@ -65,10 +65,10 @@ function MessageInput() {
                 togglePicker()
             }
         }
-        input.current?.addEventListener('keydown', (e) => listener(e))
-        return input.current?.removeEventListener('keydown', (e) => listener(e))
+        input.current?.addEventListener('keydown', listener)
+        return () => input.current?.removeEventListener('keydown', listener)
         // eslint-disable-next-line
-    }, [])
+    }, [showPicker])
 
     const onSelect = (emoji: string) => {
         if (input.current) {
