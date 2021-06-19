@@ -55,19 +55,13 @@ function restoreSelection(absoluteAnchorIndex: number, absoluteFocusIndex: numbe
             sel.setBaseAndExtent(anchorNode,anchorIndex,focusNode,focusIndex);
     }
 }
-function insertTextAtCursor(text: string) {
+function insertTextAtCursor(text: string, ) {
     const sel = window.getSelection();
     if (sel) {
         let range = sel.getRangeAt(0);
         range.deleteContents();
-        if (text === '\n') {
-            const node = document.createElement("br");
-            range.insertNode(node);
-        }
-        else {
-            const node = document.createTextNode(text);
-            range.insertNode(node);
-        }
+        if (range.commonAncestorContainer.nodeName === 'DIV')
+            throw new Error('Wrong element')
         const node = document.createTextNode(text);
         range.insertNode(node);
         range.collapse(false);

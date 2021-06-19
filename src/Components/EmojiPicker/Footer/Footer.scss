@@ -1,27 +1,27 @@
 .picker-footer {
   height: 36px;
   background: #EBEEF2;
-  ul {
+  &--list {
     padding: 0;
     margin: 0;
     height: 100%;
-  }
-  li {
-    display: inline;
-    float: left;
-    height: 100%;
-    &.active {
-      background: white;
-    }
-  }
-  button {
-    height: 100%;
-    border: none;
-    display: flex;
-    cursor: pointer;
-    background: none;
-    svg {
-      margin: auto;
+    &---tab {
+      display: inline;
+      float: left;
+      height: 100%;
+      &.active {
+        background: white;
+      }
+      &_button {
+        height: 100%;
+        border: none;
+        display: flex;
+        cursor: pointer;
+        background: none;
+        svg {
+          margin: auto;
+        }
+      }
     }
   }
 }

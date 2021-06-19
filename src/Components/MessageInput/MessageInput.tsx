@@ -8,6 +8,7 @@ import {highlight} from "../../Utils/Highlight";
 function MessageInput() {
     const input = useRef<HTMLDivElement>(null)
     const [showPicker, setShowPicker] = useState<boolean>(false)
+    // Update highlighting
     const updateEditor = useCallback((): string => {
         if (input.current) {
             const sel = window.getSelection();
@@ -35,6 +36,7 @@ function MessageInput() {
         }
         return ''
     }, [])
+
     const handleInput = (event: React.FormEvent<HTMLDivElement>) => {
         const target = event.target as HTMLDivElement;
         // Fix placeholder when new line was used
@@ -45,10 +47,12 @@ function MessageInput() {
         if (event.nativeEvent.inputType !== 'insertLineBreak' && event.nativeEvent.inputType !== 'deleteContentBackward')
             updateEditor()
     }
+
     // Open and close picker
     const togglePicker = () => {
         setShowPicker(!showPicker)
     }
+    // Handle keybindings
     useEffect(() => {
         const node = input.current
         const listener = (event: KeyboardEvent) => {
@@ -72,6 +76,7 @@ function MessageInput() {
         // eslint-disable-next-line
     }, [showPicker])
 
+    // Select emoji callback
     const onSelect = (emoji: string) => {
         if (input.current) {
             try {
@@ -108,7 +113,7 @@ function MessageInput() {
         <div className={'message-input'}>
             {
                 showPicker ?
-                    <EmojiPicker onSelect={onSelect} close={togglePicker} /> :
+                    <EmojiPicker onSelect={(emoji) => onSelect(emoji)} close={togglePicker} /> :
                     null
             }
             <span
@@ -117,11 +122,12 @@ function MessageInput() {
                 placeholder={'Ваше сообщение...'}
                 onInput={handleInput}
                 ref={input}
+                id={'message-input'}
                 onPaste={event => {
+                    // Paste only text
                     event.preventDefault()
                     document.execCommand('insertText', false, event.clipboardData.getData('text/plain'))
-                }
-                }
+                }}
             />
             <div className={'message-input--emojiToggle'}>
                 <svg className={'message-input--emojiToggle---button'} onClick={togglePicker} onMouseEnter={() => setShowPicker(true)} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

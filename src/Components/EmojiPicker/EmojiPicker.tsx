@@ -8,17 +8,21 @@ function Form (props: {
     onSelect: (emoji: string) => void
     close: () => void
 }) {
+    // Current tab
     const [tab, setTab] = useState<number>(0)
     const picker = useRef<HTMLDivElement>(null)
+    // Add effect when opened
     useEffect(() => {
         if (picker.current) {
             picker.current?.classList.remove('closed')
         }
     }, [])
+    // Add effect when closed
     const closePicker = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         picker.current?.classList.add('closed')
         setTimeout(() => props.close(), 500)
     }
+    // Tabs data
     const tabs = [
         {
             icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

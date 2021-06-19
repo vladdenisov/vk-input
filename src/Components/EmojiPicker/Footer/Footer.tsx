@@ -12,14 +12,15 @@ function PickerFooter(props: {
 
     return (
         <div className={'picker-footer'}>
-            <ul>
+            <ul className={'picker-footer--list'}>
+                {/*Render tabs menu*/}
                 {props.tabs.map((tab, index) => (
                     <li
-                        className={`picker-footer--tab ${index === props.activeTab ? 'active' : null}`}
+                        className={`picker-footer--list---tab ${index === props.activeTab ? 'active' : null}`}
                         key={index}
                     >
                         <button
-                            className={'picker-footer--tab---button'}
+                            className={'picker-footer--list---tab_button'}
                             aria-label={tab.title}
                             onClick={(ev => {
                                 props.setTab(index)
