@@ -1,13 +1,13 @@
-import React from 'react';
-import './Form.scss';
-import MessageInput from "../MessageInput/MessageInput";
+import React from 'react'
+import './Form.scss'
+import MessageInput from '../MessageInput/MessageInput'
 
 function Form() {
-    return (
-        <div className="form">
-            <MessageInput/>
-        </div>
-    );
+  return (
+    <div className="form">
+      <MessageInput />
+    </div>
+  )
 }
 
-export default Form;
+export default Form
