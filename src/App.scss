@@ -1,4 +1,6 @@
+$blue: #2A5885;
 .App {
+  --blue: #{$blue};
   text-align: center;
   width: 100%;
   height: 100vh;

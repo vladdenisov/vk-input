@@ -30,9 +30,17 @@
     }
 }
 
-[contenteditable=true]:empty:before{
+[contenteditable=true]:empty:before, .placeholder{
     content: attr(placeholder);
     pointer-events: none;
     display: block;
     color: #939393;
+}
+
+.hashtag {
+    color: var(--blue);
+}
+.link, .link:visited {
+    color: var(--blue);
+    text-decoration: none;
 }
