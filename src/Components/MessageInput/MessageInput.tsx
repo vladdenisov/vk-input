@@ -67,6 +67,7 @@ function MessageInput() {
         }
         input.current?.addEventListener('keydown', (e) => listener(e))
         return input.current?.removeEventListener('keydown', (e) => listener(e))
+        // eslint-disable-next-line
     }, [])
 
     const onSelect = (emoji: string) => {
