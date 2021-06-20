@@ -13,6 +13,7 @@ function GeneralTab(props: { onSelect: (emoji: string) => void }) {
           title: 'Недавно использованные эмодзи',
           items: last_used
         }}
+        section_id={0}
         onSelect={props.onSelect}
       />
     </>

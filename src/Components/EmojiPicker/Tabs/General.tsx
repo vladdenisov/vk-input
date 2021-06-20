@@ -16,6 +16,7 @@ function GeneralTab(props: { onSelect: (emoji: string) => void }) {
           ) => (
             <EmojiSection
               section={section}
+              section_id={index}
               key={index}
               onSelect={props.onSelect}
             />

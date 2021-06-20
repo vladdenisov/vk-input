@@ -6,6 +6,7 @@ function EmojiSection(props: {
     title: string
     items: string[]
   }
+  section_id: number
   onSelect: (emoji: string) => void
 }) {
   const { title, items } = props.section
@@ -20,10 +21,12 @@ function EmojiSection(props: {
           items.map((item, index) => (
             <li key={index} className={'picker-section--list---item'}>
               <EmojiButton
-                emoji={item}
+                index={index}
+                section_id={props.section_id}
                 onClick={() => {
                   props.onSelect(item)
                 }}
+                emoji={item}
               />
             </li>
           ))

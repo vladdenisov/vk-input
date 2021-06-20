@@ -15,6 +15,7 @@ function Form(props: {
   useEffect(() => {
     if (picker.current) {
       picker.current?.classList.remove('closed')
+      picker.current.focus()
     }
   }, [])
   // Add effect when closed
