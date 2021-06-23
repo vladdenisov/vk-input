@@ -7,14 +7,14 @@ const highlight = (str: string): string => {
       if (HASHTAG_REGEX.test(word)) {
         return `<span class='hashtag'>${word}</span>`
       }
+      if (EMAIL_REGEX.test(word)) {
+        return `<a href='#' class='email'>${word}</a>`
+      }
       if (URL_REGEX.test(word)) {
-        return `<a href='${word}' class='link'>${word}</a>`
+        return `<a href='#' class='link'>${word}</a>`
       }
       if (MENTION_REGEX.test(word)) {
         return `<span class='mention' >${word}</span>`
-      }
-      if (EMAIL_REGEX.test(word)) {
-        return `<a href='mailto:${word}' class='link'>${word}</a>`
       }
       if (/\n/g.test(word)) {
         return `<br>`
